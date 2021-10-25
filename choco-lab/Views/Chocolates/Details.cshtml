@@ -1,0 +1,45 @@
+﻿@model choco_lab.Data.Models.Chocolate
+
+@{
+    ViewData["Title"] = "Детаљи";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Name                             
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="~/media/chocolates/@Model.Image" width="600" height="600" alt="">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text">@Model.DetailedDescription</p>
+                        <p class="card-text"><b>Категорија: </b>@Model.Category</p>
+                        <p class="card-text"><b>Тежина: </b>@Model.Weight</p>
+                        <p class="card-text"><b>Рок трајања: </b>@Model.ExpirationDate</p>
+                        <p class="card-text"><b>Цена: </b>@Model.Price.ToString("c")</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer ">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                Повратак
+                            </a>
+                            <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Додај у корпу</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
