@@ -21,6 +21,24 @@ namespace choco_lab.Data
 
                 context.Database.EnsureCreated();
 
+                //Categories
+
+                if(!context.Categories.Any())
+                {
+                    context.Categories.AddRange(new List<Category>()
+                    {
+                        new Category()
+                        {
+                            Name = "Органске"
+                        },
+                        new Category()
+                        {
+                            Name = "Неорганске"
+                        }
+                    });
+                    context.SaveChanges();
+                }
+
                 //Chocolates
                 if (!context.Chocolates.Any())
                 {
@@ -33,7 +51,7 @@ namespace choco_lab.Data
                             Price = 100,
                             ShortDescription = "This is first chocolate",
                             DetailedDescription="Everithing about chocolate",
-                            Category = Enums.Category.Органске,
+                            CategoryId = 1,
                             Weight=100,
                             ExpirationDate="Годину дана од куповине"
                         },
@@ -44,9 +62,10 @@ namespace choco_lab.Data
                             Price = 150,
                             ShortDescription = "This is second chocolate",
                             DetailedDescription="Everithing about chocolate",
-                            Category = Enums.Category.Неорганске,
+                            CategoryId = 2,
                             Weight=100,
-                            ExpirationDate="Годину дана од куповине"
+                            ExpirationDate="Годину дана од куповине",
+                            Quantity=5
                         },
                         new Chocolate()
                         {
@@ -55,9 +74,10 @@ namespace choco_lab.Data
                             Price = 50,
                             ShortDescription = "This is third chocolate",
                             DetailedDescription="Everithing about chocolate",
-                            Category = Enums.Category.Неорганске,
+                            CategoryId = 1,
                             Weight=50,
-                            ExpirationDate="Годину дана од куповине"
+                            ExpirationDate="Годину дана од куповине",
+                            Quantity=3
                         },
                         new Chocolate()
                         {
@@ -66,9 +86,10 @@ namespace choco_lab.Data
                             Price = 50,
                             ShortDescription = "This is fourth chocolate",
                             DetailedDescription="Everithing about chocolate",
-                            Category = Enums.Category.Органске,
+                            CategoryId = 1,
                             Weight=50,
-                            ExpirationDate="Годину дана од куповине"
+                            ExpirationDate="Годину дана од куповине",
+                            Quantity=4
                         }
                     });
                     context.SaveChanges();
@@ -101,7 +122,10 @@ namespace choco_lab.Data
                         UserName = "app-admin",
                         Email = adminUserEmail,
                         EmailConfirmed = true,
-                        Address = "Admin Address"
+                        City = "Панчево",
+                        Address = "Admin Address",
+                        PhoneNumber = "0652299666"
+                        
                     };
                     await userManager.CreateAsync(newAdminUser, "admin@1234");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
@@ -117,7 +141,9 @@ namespace choco_lab.Data
                         UserName = "app-user",
                         Email = appUserEmail,
                         EmailConfirmed = true,
-                        Address = "User Address"
+                        City = "Београд",
+                        Address = "User Address",
+                        PhoneNumber = "0602268844"
                     };
                     await userManager.CreateAsync(newAppUser, "user@1234");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);

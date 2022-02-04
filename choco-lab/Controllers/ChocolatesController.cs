@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using choco_lab.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using choco_lab.Data.Enums;
 
 namespace choco_lab.Controllers
 {
@@ -15,15 +14,34 @@ namespace choco_lab.Controllers
     {
         private readonly IChocolatesService _service;
         private readonly IWebHostEnvironment _environment;
-        public ChocolatesController(IChocolatesService service, IWebHostEnvironment environment)
+        private readonly ICategoriesService _category;
+        public ChocolatesController(IChocolatesService service, IWebHostEnvironment environment, ICategoriesService category)
         {
             _service = service;
             _environment = environment;
+            _category = category;
         }
-        public async Task<IActionResult> Index()
+        
+        public IActionResult Index()
         {
+            return RedirectToAction("Index", new { id = 0});
+        }
+
+        [HttpGet("/Chocolates/{id}")]
+        public async Task<IActionResult> Index(int id)
+        {
+            var displayChocolates = new List<Chocolate>();
             var allChocolates = await _service.GetAllAsync();
-            return View(allChocolates);
+
+            if (id == 0)
+            {         
+                displayChocolates = allChocolates.ToList();
+            }
+            else
+            {
+                displayChocolates = allChocolates.Where(x => x.CategoryId == id).ToList();
+            }
+            return View(displayChocolates);
         }
 
         public async Task<IActionResult> Filter(string searchString)
@@ -32,7 +50,7 @@ namespace choco_lab.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filterResult = allChocolates.Where(n => n.Name.Contains(searchString) || n.DetailedDescription.Contains(searchString) || n.ShortDescription.Contains(searchString)).ToList();
+                var filterResult = allChocolates.Where(n => n.Name.Contains(searchString) || n.DetailedDescription.Contains(searchString) || n.ShortDescription.Contains(searchString) || n.ExpirationDate.Contains(searchString) || n.Category.Name.Contains(searchString)).ToList();
                 return View("Index", filterResult);
             }
 
@@ -43,12 +61,14 @@ namespace choco_lab.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var movieDetail = await _service.GetChocolateByIdAsync(id);
-            return View(movieDetail);
+            return View(movieDetail); //ПРОМЕНИ У chocolateDetail
         }
 
         //GET: Chocolates/Create
-        public IActionResult Create()
+        [HttpGet("/Chocolates/Create")]
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Categories = await _category.GetAllAsync();
             return View();
         }
 
@@ -81,6 +101,8 @@ namespace choco_lab.Controllers
         //GET: Chocolates/Edit
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.Categories = await _category.GetAllAsync();
+
             var chocolateDetails = await _service.GetChocolateByIdAsync(id);
             if (chocolateDetails == null) return View("NotFound");
 
@@ -88,11 +110,12 @@ namespace choco_lab.Controllers
             {
                 Id = chocolateDetails.Id,
                 Name = chocolateDetails.Name,
-                Category = chocolateDetails.Category,
+                CategoryId = chocolateDetails.CategoryId,
                 ShortDescription = chocolateDetails.ShortDescription,
                 DetailedDescription = chocolateDetails.DetailedDescription,
                 Weight = chocolateDetails.Weight,
                 ExpirationDate = chocolateDetails.ExpirationDate,
+                Quantity = chocolateDetails.Quantity,
                 Price = chocolateDetails.Price,
                 Image = chocolateDetails.Image
             };
@@ -135,12 +158,5 @@ namespace choco_lab.Controllers
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
-
-        public async Task<IActionResult> ControlTable()
-        {
-            var allChocolates = await _service.GetAllAsync();
-            return View(allChocolates);
-        }
-
     }
 }

@@ -37,6 +37,7 @@ namespace choco_lab
             //Services configuration ++
             services.AddScoped<IChocolatesService, ChocolatesService>();
             services.AddScoped<IOrdersService, OrdersService>();
+            services.AddScoped<ICategoriesService, CategoriesService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
@@ -56,6 +57,8 @@ namespace choco_lab
             {
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+абвгдђежзијклљмнњопрстћуфхцчџшАБВГДЂЕЖЗИЈКЛЉМНЊОПРСТЋУФХЦЧЏШ ";
             });
         }

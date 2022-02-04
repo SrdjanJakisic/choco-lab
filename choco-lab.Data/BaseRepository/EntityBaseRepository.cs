@@ -30,7 +30,7 @@ namespace choco_lab.Data.BaseRepository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             var result = await _context.Set<T>().ToListAsync();
             return result;

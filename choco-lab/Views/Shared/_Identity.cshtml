@@ -1,5 +1,6 @@
 ﻿@inject UserManager<ApplicationUser> UserManager;
 
+
 @if (!User.Identity.IsAuthenticated)
 {
     @*Login button*@
@@ -29,9 +30,19 @@ else
             </li>
             <li>
                 <a class="dropdown-item" asp-controller="Account" asp-action="Edit">
-                    <i class="bi bi-pencil"></i> Измените налог
+                    <i class="bi bi-pencil"></i> Измените податке
                 </a>
             </li>
+
+            <li>
+                <a class="dropdown-item" asp-controller="Account" asp-action="EditPass" >
+                    <i class="bi bi-pencil"></i> Измените шифру
+                </a>
+            </li>
+
+            <a class="dropdown-item" asp-controller="Account" asp-action="DeleteUser" asp-route-id="@UserManager.GetUserId(User)">
+                <i class="bi bi-trash-fill"></i> Обриши налог
+            </a>
 
             @if (User.IsInRole("Admin"))
             {

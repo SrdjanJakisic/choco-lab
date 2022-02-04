@@ -1,19 +1,18 @@
-﻿@using choco_lab.Data.ViewModels
-@model UserEditVM
+﻿@model choco_lab.Data.Models.ApplicationUser
 
 @{
-    ViewData["Title"] = "Промените податке";
+    ViewData["Title"] = "Детаљи корисника";
 }
 
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Промените податке</h4>
+            <h4>Детаљи корисника</h4>
         </p>
 
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Edit">
+                <form>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
@@ -52,15 +51,14 @@
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
 
-                    @*<div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>*@
-
                     <div class="form-group">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Промените податке" />
-                        <a class="btn btn-outline-secondary" asp-controller="Chocolates" asp-action="Index">Повратак</a>
+                        <p class="card-text">
+                            @*<input class="btn btn-outline-success float-right" asp-controller="Account" asp-action="EditUser" asp-route-id="@Model.Id" value="Промените податке"  />*@
+                            @*<input class="btn btn-outline-danger float-right" asp-controller="Account" asp-action="Delete" value="Обриши налог" />*@
+                            <a class="btn btn-outline-primary float-left" asp-controller="Orders" asp-action="Index">Повратак</a>
+                            @*<a class="btn btn-info text-white float-right" asp-controller="Account" asp-action="EditUser" asp-route-id="@Model.Id"> <i class="bi bi-pencil"></i> Измени корисника</a>*@
+                            @*<a class="btn btn-info text-white float-right" asp-controller="Account"><i class="bi bi-pencil"></i> Обриши налог </a>*@
+                        </p>
                     </div>
                 </form>
             </div>

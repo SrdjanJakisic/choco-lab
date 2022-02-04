@@ -22,6 +22,14 @@ namespace choco_lab.Data.ViewModels
         [Required(ErrorMessage = "Пуно име је обавезно")]       
         public string UserName { get; set; }
 
+        [Display(Name = "Телефон")]
+        [Required(ErrorMessage = "Број телефона је обавезан")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "Град")]
+        [Required(ErrorMessage = "Град је обавезан")]
+        public string City { get; set; }
+
         [Display(Name = "Адреса")]
         [Required(ErrorMessage = "Адреса је обавезна")]
         public string Address { get; set; }

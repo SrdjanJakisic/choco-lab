@@ -21,12 +21,13 @@ namespace choco_lab.Business.Services
             var newChocolate = new Chocolate()
             {
                 Name = data.Name,
-                Category = data.Category,
+                CategoryId = data.CategoryId,
                 ShortDescription = data.ShortDescription,
                 DetailedDescription = data.DetailedDescription,
                 Weight = data.Weight,
                 ExpirationDate = data.ExpirationDate,
                 Price = data.Price,
+                Quantity = data.Quantity,
                 Image = data.Image
             };
             await _context.Chocolates.AddAsync(newChocolate);
@@ -46,16 +47,22 @@ namespace choco_lab.Business.Services
             if (dbChocolate != null)
             {
                 dbChocolate.Name = data.Name;
-                dbChocolate.Category = data.Category;
+                dbChocolate.CategoryId = data.CategoryId;
                 dbChocolate.ShortDescription = data.ShortDescription;
                 dbChocolate.DetailedDescription = data.DetailedDescription;
                 dbChocolate.Weight = data.Weight;
                 dbChocolate.ExpirationDate = data.ExpirationDate;
                 dbChocolate.Price = data.Price;
+                dbChocolate.Quantity = data.Quantity;
                 dbChocolate.Image = data.Image;
 
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public override Task<IEnumerable<Chocolate>> GetAllAsync()
+        {
+            return Task.FromResult(_context.Chocolates.Include(n => n.Category).AsEnumerable());
         }
     }
 }

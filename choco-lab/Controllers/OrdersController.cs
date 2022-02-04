@@ -1,6 +1,7 @@
 ﻿using choco_lab.Business.Services;
 using choco_lab.Data.Cart;
 using choco_lab.Data.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -71,10 +72,9 @@ namespace choco_lab.Controllers
         {
             var items = _shoppingCart.GetShoppingCartItems();
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+            //string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
-
-            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
+            await _ordersService.StoreOrderAsync(items, userId);
             await _shoppingCart.ClearShoppingCartAsync();
 
             return View("OrderCompleted");

@@ -11,7 +11,7 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-12">
-                        <div class="card-header text-white bg-info">
+                        <div class="card-header text-white bg-primary">
                             <p class="card-text">
                                 <h5 class="card-title">
                                     @item.Name
@@ -30,9 +30,10 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <p class="card-text">@item.ShortDescription</p>
-                            <p class="card-text"><b>Категорија: </b>@item.Category</p>
+                            <p class="card-text"><b>Категорија: </b>@item.Category.Name</p>
                             <p class="card-text"><b>Тежина: </b>@item.Weight</p>
                             <p class="card-text"><b>Рок трајања: </b>@item.ExpirationDate</p>
+                            <p class="card-text"><b>Залихе: </b>@item.Quantity</p>
                             <p class="card-text"><b>Цена: </b>@item.Price.ToString("c")</p>
                         </div>
                     </div>

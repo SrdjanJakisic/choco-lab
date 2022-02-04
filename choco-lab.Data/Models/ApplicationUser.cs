@@ -12,7 +12,9 @@ namespace choco_lab.Data.Models
     {
         [Display(Name = "Пуно име")]
         public string FullName { get; set; }
-        [Display(Name = "Адреса")]
+        [Display(Name = "Град")]
+        public string City { get; set; }
+        [Display(Name = "Корисничко име")]
         public string Address { get; set; }
         [Display(Name = "Корисничко име")]
         public override string UserName { get; set; }

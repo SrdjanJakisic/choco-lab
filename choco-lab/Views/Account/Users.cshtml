@@ -30,6 +30,16 @@
                         <td class="text-center">
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
+                        <td class="text-center">
+                            <a class="dropdown-item" asp-controller="Account" asp-action="EditUser" asp-route-id="@item.Id">
+                                <i class="bi bi-pencil"></i> Измени
+                            </a>
+                        </td>   
+                        <td class="text-center">
+                            <a class="dropdown-item" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>  
                     </tr>
                 }
             </tbody>

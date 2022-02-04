@@ -1,5 +1,4 @@
 ﻿using choco_lab.Data.BaseRepository;
-using choco_lab.Data.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -19,8 +18,8 @@ namespace choco_lab.Data.Models
         public string Name { get; set; }
 
         [Display(Name = "Изаберите категорију")]
-        [Required(ErrorMessage = "Категорија је обавезна")]     
-        public Category Category { get; set; }
+        [Required(ErrorMessage = "Категорија је обавезна")]
+        public int CategoryId { get; set; }
 
         [Display(Name = "Унесите кратак опис")]
         [Required(ErrorMessage = "Кратак опис је обавезан")]
@@ -37,6 +36,10 @@ namespace choco_lab.Data.Models
         [Display(Name = "Унесите рок трајања")]
         [Required(ErrorMessage = "Рок трајања је обавезан")]        
         public string ExpirationDate { get; set; }
+
+        [Display(Name = "Залихе")]
+        [Required(ErrorMessage = "Залихе су обавезне")]
+        public int Quantity { get; set; }
 
         [Display(Name = "Унесите цену чоколаде")]
         [Required(ErrorMessage = "Цена је обавезна")]       

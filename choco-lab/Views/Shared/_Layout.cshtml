@@ -1,6 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using choco_lab.Business.Services
+@inject ICategoriesService service
+
+<!DOCTYPE html>
 <html lang="en">
-@using choco_lab.Data.Enums;
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,8 +28,16 @@
                                 <i class="bi bi-arrow-down-circle-fill"></i> Чоколаде
                             </a>
 
+                            @{
+                                var categories = await service.GetAllAsync();
+                            }
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Chocolates" asp-action="Index"> Све чоколаде</a>
+                                <a class="dropdown-item" asp-controller="Chocolates" asp-action="Index" asp-route-id = "0"> Све чоколаде</a>
+                                @foreach(var category in categories)
+                                {
+                                    <a class="dropdown-item" asp-controller="Chocolates" asp-action="Index" asp-route-id = "@category.Id"> @category.Name </a>
+                                }
+                               
                             </div>
                         </li>
                     </ul>                 
