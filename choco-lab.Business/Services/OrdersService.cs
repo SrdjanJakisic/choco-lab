@@ -23,7 +23,7 @@ namespace choco_lab.Business.Services
 
         public async Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole)
         {
-            var orders = await _context.Orders.Include(n => n.OrderItems).ThenInclude(n=>n.Chocolate).Include(n=>n.User).ToListAsync();
+            var orders = await _context.Orders.Include(n => n.OrderItems).ThenInclude(n => n.Chocolate).Include(n => n.User).ToListAsync();
             if (userRole != "Admin")
             {
                 orders = orders.Where(n => n.UserId == userId).ToList();
@@ -31,32 +31,56 @@ namespace choco_lab.Business.Services
             return orders;
         }
 
-        public async Task StoreOrderAsync(List<ShoppingCartItem> items, string userId)
+        public async Task<bool> StoreOrderAsync(List<ShoppingCartItem> items, string userId)
         {
-            var user = await _manager.FindByIdAsync(userId);
-            var order = new Order()
+            var isSucceeded = false;
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                UserId = userId,
-                Email = user.Email,
-                FullName = user.FullName,
-                Address = user.Address,
-            };
-            await _context.Orders.AddAsync(order);
-            await _context.SaveChangesAsync();
-
-            foreach (var item in items)
-            {
-                var orderItem = new OrderItem()
+                try
                 {
-                    Amount = item.Amount,
-                    ChocolateId = item.Chocolate.Id,
-                    OrderId = order.Id,
-                    Price = item.Chocolate.Price
-                };
+                    var user = await _manager.FindByIdAsync(userId);
+                    var order = new Order()
+                    {
+                        UserId = userId,
+                        Email = user.Email,
+                        FullName = user.FullName,
+                        Address = user.Address,
+                    };
+                    await _context.Orders.AddAsync(order);
+                    await _context.SaveChangesAsync();
 
-                await _context.OrderItems.AddAsync(orderItem);
-                await _context.SaveChangesAsync();
+                    foreach (var item in items)
+                    {
+                        var orderItem = new OrderItem()
+                        {
+                            Amount = item.Amount,
+                            ChocolateId = item.Chocolate.Id,
+                            OrderId = order.Id,
+                            Price = item.Chocolate.Price
+                        };
+
+                        await _context.OrderItems.AddAsync(orderItem);
+
+                        var chocolate = _context.Chocolates.FirstOrDefault(n => n.Id == item.Chocolate.Id);
+                        chocolate.Quantity = chocolate.Quantity - item.Amount;
+
+                        if (chocolate.Quantity < 0)
+                        {
+                            throw new Exception("Нема на стању!");
+                        }
+
+                        await _context.SaveChangesAsync();
+                        transaction.Commit();
+                        isSucceeded= true; 
+                    }
+                }
+                catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    isSucceeded = false;
+                }
             }
+            return isSucceeded;
         }
     }
 }

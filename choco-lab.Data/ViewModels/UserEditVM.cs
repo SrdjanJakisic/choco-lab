@@ -38,6 +38,7 @@ namespace choco_lab.Data.ViewModels
             FullName = appUser.FullName;
             UserName = appUser.UserName;
             PhoneNumber = appUser.PhoneNumber;
+            City = appUser.City;   
             Address = appUser.Address;
         }
     }

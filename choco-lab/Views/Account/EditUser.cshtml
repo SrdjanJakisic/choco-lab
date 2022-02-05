@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label asp-for="UserName" class="control-label"></label>
-                        <input disabled asp-for="UserName" class="form-control" />
+                        <input readonly asp-for="UserName" class="form-control" />
                         <span asp-validation-for="UserName" class="text-danger"></span>
                     </div>
 
@@ -53,6 +53,7 @@
                     </div>
 
                     <div class="form-group">
+                        <input asp-for="Id" type="hidden" />
                         <input class="btn btn-outline-success float-right" type="submit" value="Промените податке" />
                         <a class="btn btn-outline-secondary" asp-controller="Account" asp-action="Users"> Повратак</a>
                     </div>

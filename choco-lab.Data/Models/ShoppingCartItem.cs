@@ -11,7 +11,6 @@ namespace choco_lab.Data.Models
         public int Id { get; set; }
         public Chocolate Chocolate { get; set; }
         public int Amount { get; set; }
-
         public string ShoppingCartId { get; set; }
     }
 }

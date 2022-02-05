@@ -140,12 +140,9 @@ namespace choco_lab.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditPass()
-        {
-            ApplicationUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-            PasswordEditVM user = new PasswordEditVM(appUser);
-
-            return View(user);
+        public IActionResult EditPass()
+        {   
+            return View();
         }
 
         //Post
@@ -254,7 +251,7 @@ namespace choco_lab.Controllers
         [HttpPost]
         public async Task<IActionResult> EditUser(UserEditVM user)
         {
-            ApplicationUser appUser = await _userManager.FindByNameAsync(user.Id);
+            ApplicationUser appUser = await _userManager.FindByIdAsync(user.Id);
 
             if (ModelState.IsValid)
             {

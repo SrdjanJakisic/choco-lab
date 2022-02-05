@@ -74,10 +74,18 @@ namespace choco_lab.Controllers
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
-            await _ordersService.StoreOrderAsync(items, userId);
-            await _shoppingCart.ClearShoppingCartAsync();
+            
+            var succeeded = await _ordersService.StoreOrderAsync(items, userId);
+            if (!succeeded)
+            {
+                return View("OrderError");
+            }
+            else
+            {
+                await _shoppingCart.ClearShoppingCartAsync();
 
-            return View("OrderCompleted");
+                return View("OrderCompleted");
+            }
         }
     }
 }
