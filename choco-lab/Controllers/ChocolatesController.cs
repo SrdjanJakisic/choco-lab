@@ -21,20 +21,42 @@ namespace choco_lab.Controllers
             _environment = environment;
             _category = category;
         }
-        
+
         public IActionResult Index()
         {
-            return RedirectToAction("Index", new { id = 0});
+            return RedirectToAction("Index", new { id = 0 });
         }
 
         [HttpGet("/Chocolates/{id}")]
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(int id, string sortOrder)
         {
             var displayChocolates = new List<Chocolate>();
             var allChocolates = await _service.GetAllAsync();
 
+            ViewBag.SortPriceParam = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.SortNameParam = sortOrder == "Name" ? "name_desc" : "Name";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    allChocolates = allChocolates.OrderByDescending(x => x.Name);
+                    break;
+                case "Name":
+                    allChocolates = allChocolates.OrderBy(x => x.Name);
+                    break;
+                case "price_desc":
+                    allChocolates = allChocolates.OrderByDescending(x => x.Price);
+                    break;
+                case "Price":
+                    allChocolates = allChocolates.OrderBy(x => x.Price);
+                    break;
+                default:
+                    allChocolates = allChocolates.OrderByDescending(x => x.Quantity);
+                    break;
+            }
+
             if (id == 0)
-            {         
+            {
                 displayChocolates = allChocolates.ToList();
             }
             else
@@ -89,7 +111,7 @@ namespace choco_lab.Controllers
                 string filePath = Path.Combine(uploadsDir, imageName);
                 FileStream fs = new FileStream(filePath, FileMode.Create);
                 await chocolate.ImageUpload.CopyToAsync(fs);
-                fs.Close();               
+                fs.Close();
             }
 
             chocolate.Image = imageName;
@@ -147,7 +169,7 @@ namespace choco_lab.Controllers
             chocolate.Image = imageName;
 
             await _service.UpdateChocolateAsync(chocolate);
-            return RedirectToAction(nameof(Index)); 
+            return RedirectToAction(nameof(Index));
         }
         //GET: Chocolates/Delete/1
         public async Task<IActionResult> Delete(int id)

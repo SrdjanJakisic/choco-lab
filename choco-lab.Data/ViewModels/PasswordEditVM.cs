@@ -10,11 +10,16 @@ namespace choco_lab.Data.ViewModels
 {
     public class PasswordEditVM
     {
-        
-
         [Display(Name = "Нова шифра")]
-        [Required]
+        [Required(ErrorMessage = "Шифра је обавезна")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Display(Name = "Потврдите шифру")]
+        [Required(ErrorMessage = "Морате потврдити шифру")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Шифре нису исте!")]
+        public string ConfirmedPassword { get; set; }
 
         public PasswordEditVM() { }
 

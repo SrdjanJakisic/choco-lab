@@ -69,10 +69,10 @@ namespace choco_lab.Business.Services
                             throw new Exception("Нема на стању!");
                         }
 
-                        await _context.SaveChangesAsync();
-                        transaction.Commit();
-                        isSucceeded= true; 
+                        await _context.SaveChangesAsync();            
                     }
+                    transaction.Commit();
+                    isSucceeded = true;
                 }
                 catch(Exception ex)
                 {

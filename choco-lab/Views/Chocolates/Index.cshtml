@@ -3,7 +3,13 @@
 @{
     ViewData["Title"] = "Чоколаде";
 }
-
+<div>
+    <label>Сортирајте по:</label>
+    @Html.ActionLink("цени", "Index", new {sortOrder = ViewBag.SortPriceParam})
+    , 
+    @Html.ActionLink("називу", "Index", new {sortOrder = ViewBag.SortNameParam})
+</div>
+<br>
 <div class="row">
     @foreach (var item in Model)
     {
@@ -25,7 +31,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="~/media/chocolates/@item.Image" width="300" height="300" alt="">
+                        <img src="~/media/chocolates/@item.Image" width="100%" height="300" style="object-fit:cover" alt="">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
@@ -42,7 +48,7 @@
                             <p class="card-text">
                                 <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Детаљније
-                                </a>                              
+                                </a>
                                 <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Id"><i class="bi bi-cart-plus"></i> Додај у корпу</a>
                             </p>
                         </div>

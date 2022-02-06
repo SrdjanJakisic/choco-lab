@@ -164,9 +164,10 @@ namespace choco_lab.Controllers
                 {
                     TempData["Success"] = "Успешно сте променили шифру!";
                     //return RedirectToAction("Logout", "Account");
+                    return View("EditPassCompleted");
                 }
             }
-            return View("EditPassCompleted");
+            return View(user);        
         }
 
         [HttpGet]
