@@ -46,22 +46,22 @@ namespace choco_lab.Data
                     {
                         new Chocolate()
                         {
-                            Name ="FirstChocolate",
-                            Image = "pic1.jpg",
+                            Name ="Чоколада лешник",
+                            Image = "img1.jpg",
                             Price = 100,
-                            ShortDescription = "This is first chocolate",
-                            DetailedDescription="Everithing about chocolate",
+                            ShortDescription = "Чоколада са лешником",
+                            DetailedDescription="Чоколада са Бадемовим млеком и лешником са 60% какаа",
                             CategoryId = 1,
                             Weight=100,
                             ExpirationDate="Годину дана од куповине"
                         },
                         new Chocolate()
                         {
-                            Name ="SecondChocolate",
-                            Image = "pic2.jpg",
+                            Name ="Чоколада малина",
+                            Image = "img2.jpg",
                             Price = 150,
-                            ShortDescription = "This is second chocolate",
-                            DetailedDescription="Everithing about chocolate",
+                            ShortDescription = "Тамна чоколада са Малином",
+                            DetailedDescription="Тамна чоколада са сушеном Малином и 80% какаа. Идеална за особе које воле јаке тамне чоколаде",
                             CategoryId = 2,
                             Weight=100,
                             ExpirationDate="Годину дана од куповине",
@@ -69,11 +69,11 @@ namespace choco_lab.Data
                         },
                         new Chocolate()
                         {
-                            Name ="ThirdChocolate",
-                            Image = "pic3.jpg",
+                            Name ="Чоколада Цимет-Јабука",
+                            Image = "img3.jpg",
                             Price = 50,
                             ShortDescription = "This is third chocolate",
-                            DetailedDescription="Everithing about chocolate",
+                            DetailedDescription="Чоколада са циметом и сушеном јабуком са 70% какаа",
                             CategoryId = 1,
                             Weight=50,
                             ExpirationDate="Годину дана од куповине",
@@ -81,11 +81,11 @@ namespace choco_lab.Data
                         },
                         new Chocolate()
                         {
-                            Name ="FourthChocolate",
-                            Image = "pic4.jfif",
+                            Name ="Чоколада кикирики",
+                            Image = "img4.jpg",
                             Price = 50,
-                            ShortDescription = "This is fourth chocolate",
-                            DetailedDescription="Everithing about chocolate",
+                            ShortDescription = "Чоколада са Кикирикијем",
+                            DetailedDescription="Чоколада са Кикирикијеем и са 60% какаа. Идеална за особе које воле кремастије чоколаде",
                             CategoryId = 1,
                             Weight=50,
                             ExpirationDate="Годину дана од куповине",
