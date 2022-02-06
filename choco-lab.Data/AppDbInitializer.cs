@@ -53,7 +53,8 @@ namespace choco_lab.Data
                             DetailedDescription="Чоколада са Бадемовим млеком и лешником са 60% какаа",
                             CategoryId = 1,
                             Weight=100,
-                            ExpirationDate="Годину дана од куповине"
+                            ExpirationDate="Годину дана од куповине",
+                            Quantity=5
                         },
                         new Chocolate()
                         {
@@ -72,7 +73,7 @@ namespace choco_lab.Data
                             Name ="Чоколада Цимет-Јабука",
                             Image = "img3.jpg",
                             Price = 50,
-                            ShortDescription = "This is third chocolate",
+                            ShortDescription = "Чоколада са циметом и јабуком",
                             DetailedDescription="Чоколада са циметом и сушеном јабуком са 70% какаа",
                             CategoryId = 1,
                             Weight=50,
