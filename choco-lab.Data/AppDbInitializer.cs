@@ -48,11 +48,11 @@ namespace choco_lab.Data
                         {
                             Name ="Чоколада лешник",
                             Image = "img1.jpg",
-                            Price = 100,
+                            Price = 4,
                             ShortDescription = "Чоколада са лешником",
                             DetailedDescription="Чоколада са Бадемовим млеком и лешником са 60% какаа",
                             CategoryId = 1,
-                            Weight=100,
+                            Weight=80,
                             ExpirationDate="Годину дана од куповине",
                             Quantity=5
                         },
@@ -60,11 +60,11 @@ namespace choco_lab.Data
                         {
                             Name ="Чоколада малина",
                             Image = "img2.jpg",
-                            Price = 150,
+                            Price = 4.5,
                             ShortDescription = "Тамна чоколада са Малином",
                             DetailedDescription="Тамна чоколада са сушеном Малином и 80% какаа. Идеална за особе које воле јаке тамне чоколаде",
-                            CategoryId = 2,
-                            Weight=100,
+                            CategoryId = 1,
+                            Weight=80,
                             ExpirationDate="Годину дана од куповине",
                             Quantity=5
                         },
@@ -72,11 +72,11 @@ namespace choco_lab.Data
                         {
                             Name ="Чоколада Цимет-Јабука",
                             Image = "img3.jpg",
-                            Price = 50,
+                            Price = 2.4,
                             ShortDescription = "Чоколада са циметом и јабуком",
                             DetailedDescription="Чоколада са циметом и сушеном јабуком са 70% какаа",
-                            CategoryId = 1,
-                            Weight=50,
+                            CategoryId = 2,
+                            Weight=80,
                             ExpirationDate="Годину дана од куповине",
                             Quantity=3
                         },
@@ -84,14 +84,39 @@ namespace choco_lab.Data
                         {
                             Name ="Чоколада кикирики",
                             Image = "img4.jpg",
-                            Price = 50,
+                            Price = 2.3,
                             ShortDescription = "Чоколада са Кикирикијем",
-                            DetailedDescription="Чоколада са Кикирикијеем и са 60% какаа. Идеална за особе које воле кремастије чоколаде",
-                            CategoryId = 1,
-                            Weight=50,
+                            DetailedDescription="Чоколада са Кикирикијем и са 60% какаа. Идеална за особе које воле кремастије чоколаде",
+                            CategoryId = 2,
+                            Weight=80,
                             ExpirationDate="Годину дана од куповине",
                             Quantity=4
-                        }
+                        },
+                        new Chocolate()
+                        {
+                            Name ="Чоколада брусница",
+                            Image = "img5.jpg",
+                            Price = 4,
+                            ShortDescription = "Тамна чоколада са брусницомс",
+                            DetailedDescription="Тамна чоколада са сушеном Брусницом са 80% какаа. Одличан избор за особе које воле тамне јаке чоколаде.",
+                            CategoryId = 1,
+                            Weight=80,
+                            ExpirationDate="Годину дана од куповине",
+                            Quantity=5
+                        },
+                        
+                        new Chocolate()
+                        {
+                            Name ="Чоколада цимет-вишња",
+                            Image = "img6.jpg",
+                            Price = 2.4,
+                            ShortDescription = "Тамна чоколада са циметом и вишњом",
+                            DetailedDescription="Савршен спој цимета и вишње у чоколади са 70% какаа",
+                            CategoryId = 2,
+                            Weight=80,
+                            ExpirationDate="Годину дана од куповине",
+                            Quantity=5
+                        },
                     });
                     context.SaveChanges();
                 }

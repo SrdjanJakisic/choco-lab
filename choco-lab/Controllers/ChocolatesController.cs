@@ -82,8 +82,8 @@ namespace choco_lab.Controllers
         //GET: Chocolates/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var movieDetail = await _service.GetChocolateByIdAsync(id);
-            return View(movieDetail); //ПРОМЕНИ У chocolateDetail
+            var chocolateDetail = await _service.GetChocolateByIdAsync(id);
+            return View(chocolateDetail);
         }
 
         //GET: Chocolates/Create

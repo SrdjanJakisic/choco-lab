@@ -36,7 +36,7 @@ namespace choco_lab.Business.Services
 
         public async Task<Chocolate> GetChocolateByIdAsync(int id)
         {
-            var chocolateDetails = await _context.Chocolates.FirstOrDefaultAsync(n => n.Id == id);
+            var chocolateDetails = await _context.Chocolates.Include(n=>n.Category).FirstOrDefaultAsync(n => n.Id == id);
             return chocolateDetails;
         }
 
