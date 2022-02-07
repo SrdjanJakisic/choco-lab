@@ -19,7 +19,7 @@ namespace choco_lab.Data.ViewModels
         public string FullName { get; set; }
 
         [Display(Name = "Корисничко име(мора бити без размака)")]
-        [Required(ErrorMessage = "Пуно име је обавезно")]       
+        [Required(ErrorMessage = "Корисничко име је обавезно")]       
         public string UserName { get; set; }
 
         [Display(Name = "Телефон")]

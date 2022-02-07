@@ -13,21 +13,27 @@ namespace choco_lab.Data.ViewModels
         public string Id { get; set; }
 
         [Display(Name = "Е-пошта")]
+        [Required(ErrorMessage = "E-пошта је обавезна")]
         public string Email { get; set; }
 
         [Display(Name = "Пуно име")]
+        [Required(ErrorMessage = "Пуно име је обавезно")]
         public string FullName { get; set; }
 
         [Display(Name = "Телефон")]
+        [Required(ErrorMessage = "Број телефона је обавезан")]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Корисничко име")]
+        [Required(ErrorMessage = "Корисничко име је обавезно")]
         public string UserName { get; set; }
 
         [Display(Name = "Град")]
+        [Required(ErrorMessage = "Град је обавезан")]
         public string City { get; set; }
 
         [Display(Name = "Адреса")]
+        [Required(ErrorMessage = "Адреса је обавезна")]
         public string Address { get; set; }
 
         public UserEditVM() { }
