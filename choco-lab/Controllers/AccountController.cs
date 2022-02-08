@@ -136,6 +136,10 @@ namespace choco_lab.Controllers
                     //return RedirectToAction("Logout", "Account");
                 } 
             }
+            else
+            {
+                return View(user);
+            }
             return View("EditCompleted");
         }
 
